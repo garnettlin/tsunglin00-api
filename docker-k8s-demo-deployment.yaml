@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-k8s-demo-deployment
+  labels:
+    app: docker-k8s-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: docker-k8s-demo
+  template:
+    metadata:
+      labels:
+        app: docker-k8s-demo
+    spec:
+      containers:
+        - name: docker-k8s-demo
+          image: gcr.io/docker-with-kubernetes-engine/tsunglin00@sha256:b2b7dc23949fcfa55ef67e4cdbd96fd70216e3c35ad7a66b8f108721288bcd72
+          env:
+            - name: "PORT"
+              value: "28019"
