@@ -1,11 +1,3 @@
-/**
- * 严肃声明：
- * 开源版本请务必保留此注释头信息，若删除我方将保留所有法律责任追究！
- * 本系统已申请软件著作权，受国家版权局知识产权以及国家计算机软件著作权保护！
- * 可正常分享和学习源码，不得用于违法犯罪活动，违者必究！
- * Copyright (c) 2019-2021 十三 all rights reserved.
- * 版权所有，侵权必究！
- */
 package com.tsunglin.tsunglin00.api;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -92,4 +84,15 @@ http://localhost:8080/
 Global Tool Configuration
 JDK     /Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/
 MAVEN   /Users/tsunglin/Desktop/工具/jenkins/apache-maven-3.8.5
+MAVEN   /Users/tsunglin/Desktop/工具/jenkins/apache-maven-3.8.5/conf
+
+git config --global user.email "garnettlin21@gmail.com"
+git config --global user.name "garnettlin"
+git init
+git add .
+git commit -m "jenkins CI CD"
+git branch -M master
+git remote add origin https://github.com/garnettlin/tsunglin00-api.git
+git remote set-url origin https://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@github.com/garnettlin/tsunglin00-api.git
+git push -u origin master
 */

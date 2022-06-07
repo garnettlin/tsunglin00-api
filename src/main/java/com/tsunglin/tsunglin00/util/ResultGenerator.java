@@ -2,14 +2,6 @@ package com.tsunglin.tsunglin00.util;
 
 import org.springframework.util.StringUtils;
 
-/**
- * 響應結果生成工具
- *
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link https://github.com/newbee-ltd
- */
 public class ResultGenerator {
     private static final String DEFAULT_SUCCESS_MESSAGE = "SUCCESS";
     private static final String DEFAULT_FAIL_MESSAGE = "FAIL";
