@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@Api(value = "v1", tags = "1.新蜂商城首頁接口")
+@Api(value = "v1", tags = "前台-首頁")
 @RequestMapping("/api/v1")
 public class AppIndexAPI {
 
@@ -30,7 +30,7 @@ public class AppIndexAPI {
     private IndexConfigService indexConfigService;
 
     @GetMapping("/index-infos")
-    @ApiOperation(value = "獲取首頁數據", notes = "輪播圖、新品、推薦等")
+    @ApiOperation(value = "首頁數據", notes = "輪播圖、新品、推薦等")
     public Result<AppIndexInfoVO> indexInfo() {
         AppIndexInfoVO appIndexInfoVO = new AppIndexInfoVO();
         List<AppIndexCarouselVO> carousels = carouselService.getCarouselsForIndex(Constants.INDEX_CAROUSEL_NUMBER);

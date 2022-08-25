@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@Api(value = "v1", tags = "4.商城商品相關接口")
+@Api(value = "v1", tags = "前台-商品")
 @RequestMapping("/api/v1")
 public class AppGoodsAPI {
 
@@ -32,7 +32,7 @@ public class AppGoodsAPI {
     private GoodsService goodsService;
 
     @GetMapping("/search")
-    @ApiOperation(value = "商品搜索接口", notes = "根據關鍵字和分類id進行搜索")
+    @ApiOperation(value = "商品搜索", notes = "根據關鍵字和分類id進行搜索")
     public Result<PageResult<List<AppSearchGoodsVO>>> search(@RequestParam(required = false) @ApiParam(value = "搜索關鍵字") String keyword,
                                                              @RequestParam(required = false) @ApiParam(value = "分類id") Long goodsCategoryId,
                                                              @RequestParam(required = false) @ApiParam(value = "orderBy") String orderBy,
@@ -67,7 +67,7 @@ public class AppGoodsAPI {
     }
 
     @GetMapping("/goods/detail/{goodsId}")
-    @ApiOperation(value = "商品詳情接口", notes = "傳參為商品id")
+    @ApiOperation(value = "商品詳情", notes = "傳參為商品id")
     public Result<AppGoodsDetailVO> goodsDetail(@ApiParam(value = "商品id") @PathVariable("goodsId") Long goodsId, @TokenToMallUser Users loginMallUser) {
         logger.info("goods detail api,goodsId={},userId={}", goodsId, loginMallUser.getUserId());
         if (goodsId < 1) {

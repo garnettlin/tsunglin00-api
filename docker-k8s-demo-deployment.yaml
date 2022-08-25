@@ -1,22 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: docker-k8s-demo-deployment
+  name: jenkins-k8s-deployment
   labels:
-    app: docker-k8s-demo
+    app: jenkins-k8s
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: docker-k8s-demo
+      app: jenkins-k8s
   template:
     metadata:
       labels:
-        app: docker-k8s-demo
+        app: jenkins-k8s
     spec:
       containers:
-        - name: docker-k8s-demo
-          image: gcr.io/docker-with-kubernetes-engine/tsunglin00@sha256:b2b7dc23949fcfa55ef67e4cdbd96fd70216e3c35ad7a66b8f108721288bcd72
+        - name: jenkins-k8s
+          image: gcr.io/macro-resource-353407/tsunglin00:latest
+          imagePullPolicy: Always
           env:
             - name: "PORT"
               value: "28019"

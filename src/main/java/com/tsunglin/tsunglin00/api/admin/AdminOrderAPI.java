@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@Api(value = "v1", tags = "8-5.後台管理系統訂單模塊接口")
+@Api(value = "v1", tags = "後台-管理系統訂單")
 @RequestMapping("/manage-api/v1")
 public class AdminOrderAPI {
 
@@ -58,7 +58,7 @@ public class AdminOrderAPI {
     }
 
     @GetMapping("/orders/{orderId}")
-    @ApiOperation(value = "訂單詳情接口", notes = "傳參為訂單號")
+    @ApiOperation(value = "訂單詳情", notes = "傳參為訂單號")
     public Result<AppOrderDetailVO> orderDetailPage(@ApiParam(value = "訂單號") @PathVariable("orderId") Long orderId, @TokenToAdminUser AdminUserToken adminUser) {
         logger.info("orders orderDetailPage adminUser:{}", adminUser.toString());
         return ResultGenerator.genSuccessResult(orderService.getOrderDetailByOrderId(orderId));

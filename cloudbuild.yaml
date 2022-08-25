@@ -1,0 +1,60 @@
+substitutions:
+  _IMG_KEEP: "2"
+steps:
+  # mvn Build
+  - name: 'gcr.io/cloud-builders/mvn'
+    args: ['install']
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/macro-resource-353407/tsunglin00:latest', '.']
+  # Docker Push
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/macro-resource-353407/tsunglin00:latest']
+  # patch kubernetes deployment to trigger rolling update
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args:
+      - set
+      - image
+      - deployment
+      - jenkins-k8s-deployment
+      - jenkins-k8s=gcr.io/macro-resource-353407/tsunglin00:latest
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-east1-d'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=jenkins-ci-cd'
+  # deployment restart
+  - name: "gcr.io/cloud-builders/kubectl"
+    args: ["rollout", "restart", "deployment/jenkins-k8s-deployment"]
+    env:
+      - "CLOUDSDK_COMPUTE_ZONE=us-east1-d"
+      - "CLOUDSDK_CONTAINER_CLUSTER=jenkins-ci-cd"
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        gcloud container images list-tags gcr.io/macro-resource-353407/tsunglin00 --project macro-resource-353407 | awk '(4 < NR) {system("gcloud container images delete gcr.io/macro-resource-353407/tsunglin00:"$2"")}'
+  - name: 'gcr.io/cloud-builders/kubectl'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        images="tsunglin00"
+        for image in ${images[@]}; do
+          echo "Cleaning image ${image}"
+          c=0
+          image="gcr.io/$PROJECT_ID/${image}"
+          number_keep_images=${_IMG_KEEP}
+          for digest in $(gcloud container images list-tags $image --limit=unlimited --sort-by=~TIMESTAMP --filter="timestamp.datetime < '2022-06-16'"  --format='get(digest)'); do
+            (
+                if [ c == 0 ]; then
+                  set -x
+                  echo "a ${number_keep_images} ${c}"
+                else
+                  echo "${image}@${digest}" >&2
+                  echo "b ${number_keep_images} ${c}"
+                fi
+            )
+            c=c+1
+          done
+          echo "Deleted ${c} images for ${image}." >&2
+        done

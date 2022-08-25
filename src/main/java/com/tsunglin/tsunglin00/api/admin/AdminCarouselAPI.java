@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@Api(value = "v1", tags = "8-1.後台管理系統輪播圖模塊接口")
+@Api(value = "v1", tags = "後台-管理系統輪播圖")
 @RequestMapping("/manage-api/v1")
 public class AdminCarouselAPI {
 
@@ -74,7 +74,7 @@ public class AdminCarouselAPI {
      * 修改
      */
     @RequestMapping(value = "/carousels", method = RequestMethod.PUT)
-    @ApiOperation(value = "修改輪播圖信息", notes = "修改輪播圖信息")
+    @ApiOperation(value = "修改輪播圖", notes = "修改輪播圖信息")
     public Result update(@RequestBody AdminCarouselEditParam adminCarouselEditParam, @TokenToAdminUser AdminUserToken adminUser) {
         logger.info("carousels update adminUser:{}", adminUser.toString());
         Carousel carousel = new Carousel();
@@ -91,7 +91,7 @@ public class AdminCarouselAPI {
      * 詳情
      */
     @RequestMapping(value = "/carousels/{id}", method = RequestMethod.GET)
-    @ApiOperation(value = "獲取單條輪播圖信息", notes = "根據id查詢")
+    @ApiOperation(value = "獲取單條輪播圖", notes = "根據id查詢")
     public Result info(@PathVariable("id") Integer id, @TokenToAdminUser AdminUserToken adminUser) {
         logger.info("carousels info adminUser:{}", adminUser.toString());
         Carousel carousel = carouselService.getCarouselById(id);
@@ -105,7 +105,7 @@ public class AdminCarouselAPI {
      * 刪除
      */
     @RequestMapping(value = "/carousels", method = RequestMethod.DELETE)
-    @ApiOperation(value = "批量刪除輪播圖信息", notes = "批量刪除輪播圖信息")
+    @ApiOperation(value = "批量刪除輪播圖", notes = "批量刪除輪播圖信息")
     public Result delete(@RequestBody AdminBatchIdParam adminBatchIdParam, @TokenToAdminUser AdminUserToken adminUser) {
         logger.info("carousels info adminUser:{}", adminUser.toString());
         if (adminBatchIdParam == null || adminBatchIdParam.getIds().length < 1) {
