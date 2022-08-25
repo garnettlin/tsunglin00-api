@@ -28,7 +28,7 @@ import java.util.Map;
 
 
 @RestController
-@Api(value = "v1", tags = "8-6.後台管理系統註冊用戶模塊接口")
+@Api(value = "v1", tags = "後台-管理系統註冊用戶")
 @RequestMapping("/manage-api/v1")
 public class AdminRegisteUserAPI {
 

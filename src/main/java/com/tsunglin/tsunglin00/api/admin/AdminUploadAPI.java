@@ -26,7 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
-@Api(value = "v1", tags = "8-7.後台管理系統文件上傳接口")
+@Api(value = "v1", tags = "後台-管理系統文件上傳")
 @RequestMapping("/manage-api/v1")
 public class AdminUploadAPI {
 

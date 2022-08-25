@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@Api(value = "v1", tags = "8-4.後台管理系統首頁配置模塊接口")
+@Api(value = "v1", tags = "後台-管理系統首頁配置")
 @RequestMapping("/manage-api/v1")
 public class AdminIndexConfigAPI {
 
@@ -99,7 +99,7 @@ public class AdminIndexConfigAPI {
      * 詳情
      */
     @RequestMapping(value = "/indexConfigs/{id}", method = RequestMethod.GET)
-    @ApiOperation(value = "獲取單條首頁配置項信息", notes = "根據id查詢")
+    @ApiOperation(value = "獲取單條首頁配置項", notes = "根據id查詢")
     public Result info(@PathVariable("id") Long id, @TokenToAdminUser AdminUserToken adminUser) {
         logger.info("indexConfigs info adminUser:{}", adminUser.toString());
         IndexConfig config = indexConfigService.getIndexConfigById(id);
@@ -113,7 +113,7 @@ public class AdminIndexConfigAPI {
      * 刪除
      */
     @RequestMapping(value = "/indexConfigs", method = RequestMethod.DELETE)
-    @ApiOperation(value = "批量刪除首頁配置項信息", notes = "批量刪除首頁配置項信息")
+    @ApiOperation(value = "批量刪除首頁配置項", notes = "批量刪除首頁配置項信息")
     public Result delete(@RequestBody AdminBatchIdParam adminBatchIdParam, @TokenToAdminUser AdminUserToken adminUser) {
         logger.info("indexConfigs delete adminUser:{}", adminUser.toString());
         if (adminBatchIdParam == null || adminBatchIdParam.getIds().length < 1) {

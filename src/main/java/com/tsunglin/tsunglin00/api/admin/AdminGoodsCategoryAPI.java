@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@Api(value = "v1", tags = "8-2.後台管理系統分類模塊接口")
+@Api(value = "v1", tags = "後台-管理系統分類")
 @RequestMapping("/manage-api/v1")
 public class AdminGoodsCategoryAPI {
 
@@ -134,7 +134,7 @@ public class AdminGoodsCategoryAPI {
      * 詳情
      */
     @RequestMapping(value = "/categories/{id}", method = RequestMethod.GET)
-    @ApiOperation(value = "獲取單條分類信息", notes = "根據id查詢")
+    @ApiOperation(value = "獲取單條分類", notes = "根據id查詢")
     public Result info(@PathVariable("id") Long id, @TokenToAdminUser AdminUserToken adminUser) {
         logger.info("/categories/id info adminUser:{}", adminUser.toString());
         GoodsCategory goodsCategory = categoryService.getGoodsCategoryById(id);
@@ -148,7 +148,7 @@ public class AdminGoodsCategoryAPI {
      * 分類刪除
      */
     @RequestMapping(value = "/categories", method = RequestMethod.DELETE)
-    @ApiOperation(value = "批量刪除分類信息", notes = "批量刪除分類信息")
+    @ApiOperation(value = "批量刪除分類", notes = "批量刪除分類信息")
     public Result delete(@RequestBody AdminBatchIdParam adminBatchIdParam, @TokenToAdminUser AdminUserToken adminUser) {
         logger.info("categories delete adminUser:{}", adminUser.toString());
         if (adminBatchIdParam == null || adminBatchIdParam.getIds().length < 1) {

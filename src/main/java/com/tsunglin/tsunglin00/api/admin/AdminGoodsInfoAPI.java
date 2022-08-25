@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@Api(value = "v1", tags = "8-3.後台管理系統商品模塊接口")
+@Api(value = "v1", tags = "後台-管理系統商品")
 @RequestMapping("/manage-api/v1")
 public class AdminGoodsInfoAPI {
 

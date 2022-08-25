@@ -24,7 +24,7 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 
 @RestController
-@Api(value = "v1", tags = "8-0.後台管理系統管理員模塊接口")
+@Api(value = "v1", tags = "後台-管理系統管理員")
 @RequestMapping("/manage-api/v1")
 public class AdminManageUserAPI {
 
