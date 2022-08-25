@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@Api(value = "v1", tags = "3.新蜂商城分類頁面接口")
+@Api(value = "v1", tags = "前台-分類")
 @RequestMapping("/api/v1")
 public class AppGoodsCategoryAPI {
 

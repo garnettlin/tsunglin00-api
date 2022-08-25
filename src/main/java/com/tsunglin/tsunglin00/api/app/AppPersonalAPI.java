@@ -23,7 +23,7 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 
 @RestController
-@Api(value = "v1", tags = "2.新蜂商城用戶操作相關接口")
+@Api(value = "v1", tags = "前台-帳號")
 @RequestMapping("/api/v1")
 public class AppPersonalAPI {
 
@@ -33,7 +33,7 @@ public class AppPersonalAPI {
     private static final Logger logger = LoggerFactory.getLogger(AppPersonalAPI.class);
 
     @PostMapping("/user/login")
-    @ApiOperation(value = "登錄接口", notes = "返回token")
+    @ApiOperation(value = "登錄", notes = "返回token")
     public Result<String> login(@RequestBody @Valid AppUserLoginParam appUserLoginParam) {
         if (!NumberUtil.isPhone(appUserLoginParam.getLoginName())){
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_NAME_IS_NOT_PHONE.getResult());
@@ -54,7 +54,7 @@ public class AppPersonalAPI {
 
 
     @PostMapping("/user/logout")
-    @ApiOperation(value = "登出接口", notes = "清除token")
+    @ApiOperation(value = "登出", notes = "清除token")
     public Result<String> logout(@TokenToMallUser Users loginMallUser) {
         Boolean logoutResult = userService.logout(loginMallUser.getUserId());
 
@@ -70,7 +70,7 @@ public class AppPersonalAPI {
 
 
     @PostMapping("/user/register")
-    @ApiOperation(value = "用戶註冊", notes = "")
+    @ApiOperation(value = "註冊", notes = "")
     public Result register(@RequestBody @Valid AppUserRegisterParam appUserRegisterParam) {
         if (!NumberUtil.isPhone(appUserRegisterParam.getLoginName())){
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_NAME_IS_NOT_PHONE.getResult());
@@ -88,7 +88,7 @@ public class AppPersonalAPI {
     }
 
     @PutMapping("/user/info")
-    @ApiOperation(value = "修改用戶信息", notes = "")
+    @ApiOperation(value = "修改", notes = "")
     public Result updateInfo(@RequestBody @ApiParam("用戶信息") AppUserUpdateParam appUserUpdateParam, @TokenToMallUser Users loginMallUser) {
         Boolean flag = userService.updateUserInfo(appUserUpdateParam, loginMallUser.getUserId());
         logger.info("user updateInfo api,loginMallUser={}", loginMallUser.getUserId());
@@ -104,7 +104,7 @@ public class AppPersonalAPI {
     }
 
     @GetMapping("/user/info")
-    @ApiOperation(value = "獲取用戶信息", notes = "")
+    @ApiOperation(value = "獲取", notes = "")
     public Result<AppUserVO> getUserDetail(@TokenToMallUser Users loginMallUser) {
         logger.info("user getUserDetail api,loginMallUser={}", loginMallUser.getUserId());
         //已登錄則直接返回

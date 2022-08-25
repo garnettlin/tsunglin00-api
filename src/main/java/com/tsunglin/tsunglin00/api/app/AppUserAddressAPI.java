@@ -21,7 +21,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@Api(value = "v1", tags = "6.個人地址相關接口")
+@Api(value = "v1", tags = "前台-個人地址")
 @RequestMapping("/api/v1")
 public class AppUserAddressAPI {
     private static final Logger logger = LoggerFactory.getLogger(AppUserAddressAPI.class);

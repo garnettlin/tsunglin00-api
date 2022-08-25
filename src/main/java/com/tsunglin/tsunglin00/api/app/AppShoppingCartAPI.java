@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@Api(value = "v1", tags = "5.購物車相關接口")
+@Api(value = "v1", tags = "前台-購物車")
 @RequestMapping("/api/v1")
 public class AppShoppingCartAPI {
 

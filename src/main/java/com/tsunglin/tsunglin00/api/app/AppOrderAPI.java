@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@Api(value = "v1", tags = "7.訂單操作相關接口")
+@Api(value = "v1", tags = "前台-訂單操作")
 @RequestMapping("/api/v1")
 public class AppOrderAPI {
 
@@ -46,7 +46,7 @@ public class AppOrderAPI {
     private UserAddressService userAddressService;
 
     @PostMapping("/saveOrder")
-    @ApiOperation(value = "生成訂單接口", notes = "傳參為地址id和待結算的購物項id數組")
+    @ApiOperation(value = "生成訂單", notes = "傳參為地址id和待結算的購物項id數組")
     public Result<String> saveOrder(@ApiParam(value = "訂單參數") @RequestBody AppSaveOrderParam appSaveOrderParam, @TokenToMallUser Users loginMallUser) {
         logger.info("saveOrder saveOrder");
 
@@ -85,13 +85,13 @@ public class AppOrderAPI {
     }
 
     @GetMapping("/order/{orderNo}")
-    @ApiOperation(value = "訂單詳情接口", notes = "傳參為訂單號")
+    @ApiOperation(value = "訂單詳情", notes = "傳參為訂單號")
     public Result<AppOrderDetailVO> orderDetailPage(@ApiParam(value = "訂單號") @PathVariable("orderNo") String orderNo, @TokenToMallUser Users loginMallUser) {
         return ResultGenerator.genSuccessResult(orderService.getOrderDetailByOrderNo(orderNo, loginMallUser.getUserId()));
     }
 
     @GetMapping("/order")
-    @ApiOperation(value = "訂單列表接口", notes = "傳參為頁碼")
+    @ApiOperation(value = "訂單列表", notes = "傳參為頁碼")
     public Result<PageResult<List<AppOrderListVO>>> orderList(@ApiParam(value = "頁碼") @RequestParam(required = false) Integer pageNumber,
                                                               @ApiParam(value = "訂單狀態:0.待支付 1.待確認 2.待發貨 3:已發貨 4.交易成功") @RequestParam(required = false) Integer status,
                                                               @TokenToMallUser Users loginMallUser) {
@@ -109,7 +109,7 @@ public class AppOrderAPI {
     }
 
     @PutMapping("/order/{orderNo}/cancel")
-    @ApiOperation(value = "訂單取消接口", notes = "傳參為訂單號")
+    @ApiOperation(value = "訂單取消", notes = "傳參為訂單號")
     public Result cancelOrder(@ApiParam(value = "訂單號") @PathVariable("orderNo") String orderNo, @TokenToMallUser Users loginMallUser) {
         String cancelOrderResult = orderService.cancelOrder(orderNo, loginMallUser.getUserId());
         if (ServiceResultEnum.SUCCESS.getResult().equals(cancelOrderResult)) {
@@ -120,7 +120,7 @@ public class AppOrderAPI {
     }
 
     @PutMapping("/order/{orderNo}/finish")
-    @ApiOperation(value = "確認收貨接口", notes = "傳參為訂單號")
+    @ApiOperation(value = "確認收貨", notes = "傳參為訂單號")
     public Result finishOrder(@ApiParam(value = "訂單號") @PathVariable("orderNo") String orderNo, @TokenToMallUser Users loginMallUser) {
         String finishOrderResult = orderService.finishOrder(orderNo, loginMallUser.getUserId());
         if (ServiceResultEnum.SUCCESS.getResult().equals(finishOrderResult)) {
@@ -131,7 +131,7 @@ public class AppOrderAPI {
     }
 
     @GetMapping("/paySuccess")
-    @ApiOperation(value = "支付成功回調的接口", notes = "傳參為訂單號和支付方式")
+    @ApiOperation(value = "支付成功回調", notes = "傳參為訂單號和支付方式")
     public Result paySuccess(@ApiParam(value = "訂單號") @RequestParam("orderNo") String orderNo, @ApiParam(value = "支付方式") @RequestParam("payType") int payType) {
         String payResult = orderService.paySuccess(orderNo, payType);
         if (ServiceResultEnum.SUCCESS.getResult().equals(payResult)) {
