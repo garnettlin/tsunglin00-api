@@ -2,8 +2,9 @@
 * Docker
 * K8S
 * Spring boot
-* VUE 3
 * Apache kafka
 * Redis
 * Web socket
 * MQTT
+
+* With VUE 3
